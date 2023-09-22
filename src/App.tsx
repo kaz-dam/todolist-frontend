@@ -6,7 +6,7 @@ import "./App.css";
 
 const App = () => {
     return (
-        <div className="flex flex-row w-screen h-screen">
+        <div className="flex flex-row w-screen h-screen bg-todo-green">
             <Sidebar />
             <div className="w-full bg-todo-light-grey rounded-tl-todo rounded-bl-todo py-10 px-12">
                 <Header />
