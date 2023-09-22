@@ -1,6 +1,8 @@
+import React from "react";
+
 const Sidebar = () => {
     return (
-        <div>
+        <div className="w-[110px]">
             <h3>Menu</h3>
             <ul>
                 <li>Home</li>
