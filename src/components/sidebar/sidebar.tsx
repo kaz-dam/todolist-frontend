@@ -5,7 +5,7 @@ import SideBarMenu from "../ui/sidebar-menu/sidebar-menu";
 const Sidebar = () => {
     return (
         <div className="w-[110px] bg-todo-green text-white py-10 flex flex-col items-center justify-between">
-            <h3>YuDo</h3>
+            <h3 className="">YuDo</h3>
             <SideBarMenu>
                 <li><Icon iconName="dashboard" /></li>
                 <li><Icon iconName="leaderboard" /></li>

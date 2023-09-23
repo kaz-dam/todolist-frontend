@@ -3,6 +3,9 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        'sans': ['Roboto Flex', 'sans-serif']
+      },
       backgroundColor: {
         'todo-green': '#719191',
         'todo-light-green': '#EAF1F1',
