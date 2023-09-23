@@ -6,6 +6,12 @@ module.exports = {
       fontFamily: {
         'sans': ['Roboto Flex', 'sans-serif']
       },
+      colors: {
+        'todo-green': '#719191',
+        'todo-light-green': '#EAF1F1',
+        'todo-light-grey': '#FAFAFA',
+        'todo-alert': '#EB9A78'
+      },
       backgroundColor: {
         'todo-green': '#719191',
         'todo-light-green': '#EAF1F1',
