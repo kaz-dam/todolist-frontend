@@ -1,6 +1,13 @@
-const Icon = () => {
+import { cn } from "../../../lib/utils";
+
+type IconProps = React.HTMLProps<HTMLSpanElement> & {
+    iconName: string;
+    className?: string;
+};
+
+const Icon = ({ className, iconName, ...props }: IconProps) => {
     return (
-        <span className="material-icons">pie_chart</span>
+        <span className={cn("material-icons", className)} {...props}>{iconName}</span>
     );
 }
 
