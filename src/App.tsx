@@ -6,11 +6,12 @@ import "./App.css";
 
 const App = () => {
     return (
-        <div className="flex flex-row w-screen h-screen bg-todo-green">
+        <div className="flex flex-row w-screen h-screen bg-todo-green text-todo-text">
             <Sidebar />
-            <div className="w-full bg-todo-light-grey rounded-tl-todo rounded-bl-todo py-10 px-12">
+            <div className="w-full h-screen flex flex-col bg-todo-light-grey rounded-tl-todo rounded-bl-todo py-5 px-12 relative">
                 <Header siteTitle="Dashboard" />
                 {/* ROUTER GOES HERE */}
+                <div className="grow">content</div>
                 <Footer />
             </div>
         </div>
