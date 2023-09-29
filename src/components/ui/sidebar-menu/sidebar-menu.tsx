@@ -7,7 +7,7 @@ type SideBarMenuProps = React.HTMLProps<HTMLUListElement> & {
 
 const SideBarMenu = ({className, children, ...props}: SideBarMenuProps) => {
     return (
-        <ul className={cn("flex flex-col justify-between gap-10", className)} {...props}>{children}</ul>
+        <ul className={cn("flex md:flex-col flex-row justify-between gap-10", className)} {...props}>{children}</ul>
     );
 };
 
