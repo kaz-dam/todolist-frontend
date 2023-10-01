@@ -7,6 +7,9 @@ import {
 import Header from "./components/header";
 import Sidebar from "./components/sidebar";
 import Footer from "./components/footer";
+import Dashboard from "./components/pages/dashboard";
+import Statistics from "./components/pages/statistics";
+import Calendar from "./components/pages/calendar";
 import "./App.css";
 
 type TitleNames = {
@@ -35,9 +38,9 @@ const App = () => {
                 <Header siteTitle={siteTitle} />
                 <div className="grow">
                     <Routes>
-                        <Route path="/" element={<h1>This is the dashboard</h1>} />
-                        <Route path="statistics" element={<h1>This is the statistics</h1>} />
-                        <Route path="calendar" element={<h1>This is the calendar</h1>} />
+                        <Route path="/" element={<Dashboard />} />
+                        <Route path="statistics" element={<Statistics />} />
+                        <Route path="calendar" element={<Calendar />} />
                     </Routes>
                 </div>
                 <Footer />
