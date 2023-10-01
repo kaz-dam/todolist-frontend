@@ -10,6 +10,7 @@ import Footer from "./components/footer";
 import Dashboard from "./components/pages/dashboard";
 import Statistics from "./components/pages/statistics";
 import Calendar from "./components/pages/calendar";
+import NotFound from "./components/pages/not-found";
 import "./App.css";
 
 type TitleNames = {
@@ -28,7 +29,7 @@ const App = () => {
     }, []);
 
     const siteTitle = useMemo((): string => {
-        return pathToTitleMapping[location.pathname];
+        return pathToTitleMapping[location.pathname] || 'Ooops!';
     }, [location.pathname, pathToTitleMapping]);
 
     return (
@@ -41,6 +42,8 @@ const App = () => {
                         <Route path="/" element={<Dashboard />} />
                         <Route path="statistics" element={<Statistics />} />
                         <Route path="calendar" element={<Calendar />} />
+
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </div>
                 <Footer />
