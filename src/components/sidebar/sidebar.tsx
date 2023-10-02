@@ -9,6 +9,7 @@ const Sidebar = () => {
             <Link to="/"><h3 className="">YuDo</h3></Link>
             <SideBarMenu>
                 <li><Link to="/"><Icon iconName="dashboard" /></Link></li>
+                <li><Link to="/tasks"><Icon iconName="task" /></Link></li>
                 <li><Link to="/statistics"><Icon iconName="leaderboard" /></Link></li>
                 <li><Link to="/calendar"><Icon iconName="calendar_month" /></Link></li>
             </SideBarMenu>

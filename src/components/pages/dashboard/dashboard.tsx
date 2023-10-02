@@ -8,7 +8,7 @@ const Dashboard = () => {
         <>
             <WidgetWrapper>
                 <Widget widgetTitle="Tasks">
-                    <WidgetHeader widgetTitle="Tasks" linkTo="/" />
+                    <WidgetHeader widgetTitle="Tasks" linkTo="/tasks" />
                     <ul>
                         <li>First task</li>
                         <li>second task</li>

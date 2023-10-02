@@ -24,7 +24,8 @@ const App = () => {
         return {
             '/': 'Dashboard',
             '/statistics': 'Statistics',
-            '/calendar': 'Calendar'
+            '/calendar': 'Calendar',
+            '/tasks': 'Tasks'
         };
     }, []);
 
@@ -42,6 +43,7 @@ const App = () => {
                         <Route path="/" element={<Dashboard />} />
                         <Route path="statistics" element={<Statistics />} />
                         <Route path="calendar" element={<Calendar />} />
+                        <Route path="tasks" element={<div>Tasks</div>} />
 
                         <Route path="*" element={<NotFound />} />
                     </Routes>
