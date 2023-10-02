@@ -1,8 +1,9 @@
 import React from "react";
+import { MaterialIcon } from "material-icons";
 import { cn } from "../../../lib/utils";
 
 type IconProps = React.HTMLProps<HTMLSpanElement> & {
-    iconName: string;
+    iconName: MaterialIcon;
     className?: string;
 };
 
