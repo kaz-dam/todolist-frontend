@@ -1,8 +1,19 @@
 import React from "react";
+import WidgetWrapper from "../../widget-wrapper/widget-wrapper";
+import Widget from "../../widget/widget";
 
 const Dashboard = () => {
     return (
-        <h1>This is the dashboard</h1>
+        <>
+            <WidgetWrapper>
+                <Widget widgetTitle="Tasks">
+                    <ul>
+                        <li>First task</li>
+                        <li>second task</li>
+                    </ul>
+                </Widget>
+            </WidgetWrapper>
+        </>
     );
 };
 
