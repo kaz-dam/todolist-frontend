@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import FloatingButton from "../../ui/floating-button/floating-button";
 import Icon from "../../ui/icon/icon";
+import { Task } from "../../ui/task";
 
 const Tasks = () => {
     
@@ -11,14 +12,7 @@ const Tasks = () => {
     return (
         <>
             <div className="flex flex-col items-center bg-white rounded-todo divide-y divide-dashed">
-                <div className="flex flex-row justify-between items-center w-full py-4 px-10 bg-white">
-                    <div className="flex flex-row justify-between items-center gap-8">
-                        <Icon iconName="drag_indicator" className="text-todo-green" />
-                        <span className="block border-2 border-todo-green w-6 h-6"></span>
-                        <h2 className="font-semibold text-lg">Some task</h2>
-                    </div>
-                    <span>today</span>
-                </div>
+                <Task taskTitle="Some task" deadLine="today" onMarkCompleted={() => {}} />
                 <div className="flex flex-row justify-between items-center w-full py-4 px-10 bg-white">
                     <div className="flex flex-row justify-between items-center gap-8">
                         <Icon iconName="drag_indicator" className="text-todo-green" />
