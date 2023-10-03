@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import FloatingButton from "../../ui/floating-button/floating-button";
-import { Task } from "../../ui/task";
+import Task from "../../ui/task";
 import TaskWrapper from "../../task-wrapper/task-wrapper";
 
 const Tasks = () => {
