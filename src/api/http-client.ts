@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 
 const baseURL: string = process.env.NODE_ENV === "development"
-    ? "https://localhost:5000/api"
+    ? "http://localhost:5000/api"
     : "https://api.github.com";
 
 const httpClient: AxiosInstance = axios.create({

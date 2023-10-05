@@ -4,11 +4,12 @@ import Icon from "../icon";
 type TaskProps = React.HTMLProps<HTMLDivElement> & {
     taskTitle: string;
     deadLine: string;
+    completed?: boolean;
     onMarkCompleted: () => void;
 };
 
-const Task = ({ taskTitle, deadLine, onMarkCompleted, ...props }: TaskProps) => {
-    const [ isCompleted, setIsCompleted ] = useState(false);
+const Task = ({ taskTitle, deadLine, completed, onMarkCompleted, ...props }: TaskProps) => {
+    const [ isCompleted, setIsCompleted ] = useState<boolean>(completed || false);
 
     const markCompleted = () => {
         setIsCompleted(!isCompleted);
