@@ -23,7 +23,7 @@ const Tasks = () => {
             <div className="flex flex-col items-center bg-white rounded-todo">
                 <TaskWrapper>
                     {tasks.map((task) => (
-                        <Task taskTitle={task.title} deadLine={task.dueDate} completed={task.completed} onMarkCompleted={() => {}} />
+                        <Task key={task.id} taskTitle={task.title} deadLine={task.dueDate} completed={task.completed} onMarkCompleted={() => {}} />
                     ))}
                 </TaskWrapper>
                 <FloatingButton onClick={handleFloatingButtonClick} />

@@ -23,7 +23,7 @@ const Dashboard = () => {
                     <WidgetHeader widgetTitle="Tasks" linkTo="/tasks" />
                     <TaskWrapper>
                         {tasks.map((task) => (
-                            <Task taskTitle={task.title} deadLine={task.dueDate} completed={task.completed} onMarkCompleted={() => {}} />
+                            <Task key={task.id} taskTitle={task.title} deadLine={task.dueDate} completed={task.completed} onMarkCompleted={() => {}} />
                         ))}
                     </TaskWrapper>
                 </Widget>

@@ -1,18 +1,10 @@
 import React, { useMemo } from "react";
-import {
-    Routes,
-    Route,
-    useLocation
-} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Header from "./components/header";
 import Sidebar from "./components/sidebar";
 import Footer from "./components/footer";
-import Dashboard from "./components/pages/dashboard";
-import Statistics from "./components/pages/statistics";
-import Calendar from "./components/pages/calendar";
-import Tasks from "./components/pages/tasks/tasks";
-import NotFound from "./components/pages/not-found";
 import "./App.css";
+import AppRoutes from "./AppRoutes";
 
 type TitleNames = {
     [key: string]: string;
@@ -40,14 +32,7 @@ const App = () => {
             <div className="w-full md:h-screen flex flex-col flex-grow bg-todo-light-grey rounded-tl-todo md:rounded-bl-todo rounded-bl-none md:rounded-tr-none rounded-tr-todo py-5 md:px-12 px-4 relative">
                 <Header siteTitle={siteTitle} />
                 <div className="grow">
-                    <Routes>
-                        <Route path="/" element={<Dashboard />} />
-                        <Route path="statistics" element={<Statistics />} />
-                        <Route path="calendar" element={<Calendar />} />
-                        <Route path="tasks" element={<Tasks />} />
-
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
+                    <AppRoutes />
                 </div>
                 <Footer />
             </div>
