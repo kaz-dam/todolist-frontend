@@ -4,17 +4,21 @@ import Widget from "../../widget/widget";
 import WidgetHeader from "../../widget-header/widget-header";
 import TaskWrapper from "../../task-wrapper/task-wrapper";
 import Task from "../../ui/task";
-import { getTasks } from "../../../api/tasks";
-import { Task as TaskType } from "../../../api/tasks/types";
+import { useTaskService } from "../../../contexts";
+import { Task as TaskType } from "../../../types/task-types";
 
 const Dashboard = () => {
-    const [tasks, setTasks] = useState<TaskType[]>([]);
+    const taskService = useTaskService();
+    const [ tasks, setTasks ] = useState<TaskType[]>([]);
 
     useEffect(() => {
-        getTasks().then((tasks) => {
-            setTasks(tasks);
-        });
-    }, []);
+        if (tasks.length === 0) {
+            taskService.fetchTasks()
+                .then((tasksResponse: TaskType[]) => {
+                    setTasks(tasksResponse);
+                });
+        }
+    }, [taskService, tasks]);
 
     return (
         <>

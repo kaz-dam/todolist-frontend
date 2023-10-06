@@ -2,17 +2,21 @@ import React, { useCallback, useEffect, useState } from "react";
 import FloatingButton from "../../ui/floating-button/floating-button";
 import Task from "../../ui/task";
 import TaskWrapper from "../../task-wrapper/task-wrapper";
-import { getTasks } from "../../../api/tasks";
-import { Task as TaskType } from "../../../api/tasks/types";
+import { Task as TaskType } from "../../../types/task-types";
+import { useTaskService } from "../../../contexts";
 
 const Tasks = () => {
+    const taskService = useTaskService();
     const [tasks, setTasks] = useState<TaskType[]>([]);
 
     useEffect(() => {
-        getTasks().then((tasks) => {
-            setTasks(tasks);
-        });
-    }, []);
+        if (tasks.length === 0) {
+            taskService.fetchTasks()
+                .then((tasks) => {
+                    setTasks(tasks);
+                });
+        }
+    }, [taskService, tasks]);
     
     const handleFloatingButtonClick = useCallback(() => {
         console.log('Floating button clicked');
