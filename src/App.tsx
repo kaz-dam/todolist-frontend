@@ -1,30 +1,13 @@
-import React, { useMemo } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
 import Header from "./components/header";
 import Sidebar from "./components/sidebar";
 import Footer from "./components/footer";
 import "./App.css";
 import AppRoutes from "./AppRoutes";
-
-type TitleNames = {
-    [key: string]: string;
-};
+import useSiteTitle from "./hooks/use-site-title/use-site-title";
 
 const App = () => {
-    const location = useLocation();
-
-    const pathToTitleMapping = useMemo((): TitleNames => {
-        return {
-            '/': 'Dashboard',
-            '/statistics': 'Statistics',
-            '/calendar': 'Calendar',
-            '/tasks': 'Tasks'
-        };
-    }, []);
-
-    const siteTitle = useMemo((): string => {
-        return pathToTitleMapping[location.pathname] || 'Ooops!';
-    }, [location.pathname, pathToTitleMapping]);
+    const siteTitle = useSiteTitle();
 
     return (
         <div className="flex md:flex-row flex-col w-screen h-screen bg-todo-green text-todo-text">
