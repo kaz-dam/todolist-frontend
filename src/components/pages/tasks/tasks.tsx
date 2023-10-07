@@ -1,14 +1,13 @@
 import React, { useCallback } from "react";
-import { useQueryClient, useQuery } from "react-query";
+import { useQueryClient } from "react-query";
 import FloatingButton from "../../ui/floating-button/floating-button";
 import Task from "../../ui/task";
 import TaskWrapper from "../../task-wrapper/task-wrapper";
-import { useTaskService } from "../../../contexts";
+import useTasks from "../../../hooks/use-tasks";
 
 const Tasks = () => {
-    const taskService = useTaskService();
     const queryClient = useQueryClient();
-    const { data: tasks, isLoading, isError } = useQuery('tasks', taskService.fetchTasks);
+    const { data: tasks, isLoading, isError } = useTasks();
     
     const handleFloatingButtonClick = useCallback(() => {
         console.log('Floating button clicked');
