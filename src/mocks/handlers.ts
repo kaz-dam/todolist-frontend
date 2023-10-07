@@ -9,4 +9,11 @@ export const handlers = [
             { id: 4, title: "Task 4", dueDate: "2023-10-07", completed: false, order: 4 },
         ]));
     }),
+
+    rest.post("http://localhost:5000/api/tasks/:id/completed", (req, res, ctx) => {
+        return res(ctx.json({
+            id: req.params.id,
+            completed: true
+        }));
+    })
 ];
