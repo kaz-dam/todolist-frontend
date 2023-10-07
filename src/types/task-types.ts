@@ -7,3 +7,8 @@ export type Task = {
 }
 
 export type GetTasksResponse = Task[];
+
+export type MarkCompletedResponse = {
+    id: number;
+    completed: boolean;
+}
