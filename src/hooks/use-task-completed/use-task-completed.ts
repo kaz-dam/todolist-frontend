@@ -1,28 +1,29 @@
-import { useQueryClient, useMutation } from "react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { useTaskService } from "../../contexts";
-import { Task } from "../../types/task-types";
+import { Task, MarkCompletedResponse } from "../../types/task-types";
 
 const useTaskCompleted = () => {
     const taskService = useTaskService();
     const queryClient = useQueryClient();
 
-    return useMutation(taskService.markCompleted, {
-        onMutate: async (newTask: Task) => {
-            await queryClient.cancelQueries('tasks');
+    return useMutation({
+        mutationFn: taskService.markCompleted, 
+        onMutate: async (newTask: MarkCompletedResponse) => {
+            await queryClient.cancelQueries({ queryKey: ['tasks'] });
 
-            queryClient.setQueryData('tasks', (oldData: any) => 
-                oldData.map((task: Task) => task.id === newTask.id ? { ...task, completed: true } : task)
+            const previousTasks = queryClient.getQueryData<Task[]>(['tasks']);
+
+            queryClient.setQueryData(['tasks'], (oldData: any) =>
+                oldData.map((task: Task) => task.id === newTask.id ? { ...task, completed: newTask.completed } : task)
             );
 
-            return { newTask };
+            return { previousTasks, newTask };
         },
         onError: (error, newTask, context) => {
-            queryClient.setQueryData('tasks', (oldData: any) => 
-                oldData.map((task: Task) => task.id === context?.newTask.id ? { ...task, completed: false } : task)
-            );
+            queryClient.setQueryData(['tasks'], context?.previousTasks);
         },
-        onSettled: () => {
-            queryClient.invalidateQueries('tasks');
+        onSettled: (newTask) => {
+            queryClient.invalidateQueries({ queryKey: ['tasks']});
         }
     });
 };
