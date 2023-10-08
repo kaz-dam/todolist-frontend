@@ -7,6 +7,10 @@ export default class TaskService {
     }
 
     markCompleted(task: Task): Promise<MarkCompletedResponse> {
-        return HttpClient.post<MarkCompletedResponse, void>(`/tasks/${task.id}/completed`);
+        return HttpClient.post<MarkCompletedResponse, Task>(`/tasks/${task.id}/completed`, task);
+    }
+
+    createTask(title: string): Promise<Task> {
+        return HttpClient.post<Task, { title: string }>("/tasks", { title });
     }
 }

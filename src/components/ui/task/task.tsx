@@ -1,16 +1,18 @@
 import React from "react";
 import Icon from "../icon";
+import { cn } from "../../../lib/utils";
 
 type TaskProps = React.HTMLProps<HTMLDivElement> & {
     taskTitle: string;
     deadLine: string;
     completed?: boolean;
+    className?: string;
     onMarkCompleted: () => void;
 };
 
-const Task = ({ taskTitle, deadLine, completed, onMarkCompleted, ...props }: TaskProps) => {
+const Task = ({ taskTitle, deadLine, completed, onMarkCompleted, className, ...props }: TaskProps) => {
     return (
-        <div className="flex flex-row justify-between items-center w-full py-4 px-10 bg-white">
+        <div className={cn("flex flex-row justify-between items-center w-full py-4 px-10 bg-white", className)}>
             <div className="flex flex-row justify-between items-center gap-8">
                 <Icon iconName="drag_indicator" className="text-todo-green cursor-grab" />
                 <span onClick={onMarkCompleted} className={`flex justify-center items-center cursor-pointer border-2 border-todo-green w-6 h-6 ${completed && 'bg-todo-green text-white'}`}>

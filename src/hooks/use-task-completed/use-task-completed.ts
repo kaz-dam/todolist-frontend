@@ -7,7 +7,8 @@ const useTaskCompleted = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: taskService.markCompleted, 
+        mutationFn: taskService.markCompleted,
+        mutationKey: ['tasks', 'completed'],
         onMutate: async (newTask: MarkCompletedResponse) => {
             await queryClient.cancelQueries({ queryKey: ['tasks'] });
 
@@ -22,7 +23,7 @@ const useTaskCompleted = () => {
         onError: (error, newTask, context) => {
             queryClient.setQueryData(['tasks'], context?.previousTasks);
         },
-        onSettled: (newTask) => {
+        onSettled: () => {
             queryClient.invalidateQueries({ queryKey: ['tasks']});
         }
     });

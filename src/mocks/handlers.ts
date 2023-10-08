@@ -15,5 +15,12 @@ export const handlers = [
             id: req.params.id,
             completed: false
         }));
+    }),
+    
+    rest.post("http://localhost:5000/api/tasks", (req, res, ctx) => {
+        return res(ctx.json({
+            id: Math.floor(Math.random() * 100),
+            title: 'New Task'
+        }));
     })
 ];
