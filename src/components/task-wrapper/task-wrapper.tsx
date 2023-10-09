@@ -3,6 +3,7 @@ import Task from "../ui/task";
 import useTasks from "../../hooks/use-tasks";
 import useTaskCompleted from "../../hooks/use-task-completed";
 import { Task as TaskType } from "../../types/task-types";
+import QuickTaskForm from "../quick-task-form/quick-task-form";
 
 type TaskWrapperProps = React.HTMLProps<HTMLDivElement>;
 
@@ -22,6 +23,7 @@ const TaskWrapper = ({ ...props }: TaskWrapperProps) => {
             {tasks && tasks.map((task) => (
                 <Task key={task.id} taskTitle={task.title} deadLine={task.dueDate} completed={task.completed} onMarkCompleted={() => handleMarkCompleted({...task, completed: !task.completed})} />
             ))}
+            <QuickTaskForm />
         </div>
     );
 };
