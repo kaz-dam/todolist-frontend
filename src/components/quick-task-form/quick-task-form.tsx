@@ -4,7 +4,7 @@ import useCreateTask from "../../hooks/use-create-task/use-create-task";
 import { QuickTaskFormValues } from "../../types/task-types";
 
 const QuickTaskForm = () => {
-    const { mutate, isPending } = useCreateTask();
+    const { mutate } = useCreateTask();
     const { register, handleSubmit, reset } = useForm<QuickTaskFormValues>({
         defaultValues: {
             title: '',

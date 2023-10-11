@@ -9,7 +9,7 @@ type FloatingButtonProps = Omit<React.HTMLProps<HTMLButtonElement>, 'type'> & {
 
 const FloatingButton = ({ className, onClick, ...props }: FloatingButtonProps) => {
     return (
-        <button type="button" onClick={onClick} className={cn('fixed right-16 bottom-16 rounded-full bg-todo-green shadow-lg', className)} {...props}>
+        <button type="button" onClick={onClick} className={cn('fixed z-0 right-16 bottom-16 rounded-full bg-todo-green shadow-lg', className)} {...props}>
             <Icon iconName="add" className="text-white p-4" />
         </button>
     );
