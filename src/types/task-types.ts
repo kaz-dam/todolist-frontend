@@ -12,3 +12,9 @@ export type MarkCompletedResponse = {
     id: number;
     completed: boolean;
 }
+
+export type QuickTaskFormValues = {
+    title: string;
+    dueDate: string;
+    completed: boolean;
+};

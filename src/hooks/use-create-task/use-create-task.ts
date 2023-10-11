@@ -1,6 +1,6 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { useTaskService } from "../../contexts";
-import { Task } from "../../types/task-types";
+import { Task, QuickTaskFormValues } from "../../types/task-types";
 
 const useCreateTask = () => {
     const taskService = useTaskService();
@@ -9,7 +9,7 @@ const useCreateTask = () => {
     return useMutation({
         mutationFn: taskService.createTask,
         mutationKey: ['tasks', 'create'],
-        onMutate: async (title: string) => {
+        onMutate: async (newTask: QuickTaskFormValues) => {
             await queryClient.cancelQueries({ queryKey: ['tasks'] });
 
             const previousTasks = queryClient.getQueryData<Task[]>(['tasks']);
@@ -17,10 +17,8 @@ const useCreateTask = () => {
                 ...oldData,
                 {
                     id: Math.floor(Math.random() * 100),
-                    title,
-                    completed: false,
-                    dueDate: new Date().toLocaleString(),
-                    order: oldData.length + 1
+                    order: oldData.length + 1,
+                    ...newTask
                 }]);
 
             return { previousTasks };

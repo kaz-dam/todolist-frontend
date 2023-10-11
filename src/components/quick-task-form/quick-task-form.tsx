@@ -1,13 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-
-type QuickTaskFormValues = {
-    title: string;
-    dueDate: string;
-    completed: boolean;
-};
+import useCreateTask from "../../hooks/use-create-task/use-create-task";
+import { QuickTaskFormValues } from "../../types/task-types";
 
 const QuickTaskForm = () => {
+    const { mutate, isPending } = useCreateTask();
     const { register, handleSubmit, reset } = useForm<QuickTaskFormValues>({
         defaultValues: {
             title: '',
@@ -17,7 +14,7 @@ const QuickTaskForm = () => {
     });
 
     const onSubmit = (data: QuickTaskFormValues) => {
-        console.log(data);
+        mutate(data);
         reset();
     };
 

@@ -9,7 +9,7 @@ const Tasks = () => {
     const handleFloatingButtonClick = useCallback(() => {
         console.log('Floating button clicked');
         // TODO: trigger task creation form
-        createTask.mutate('New task');
+        // createTask.mutate('New task');
     }, [createTask]);
 
     return (
