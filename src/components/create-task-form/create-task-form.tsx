@@ -4,6 +4,7 @@ import DatePicker from "react-date-picker";
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import "./create-task-form.css";
+import useCreateTask from "../../hooks/use-create-task/use-create-task";
 
 type CreateTaskFormProps = {
     showDialog: boolean;
@@ -11,6 +12,7 @@ type CreateTaskFormProps = {
 };
 
 const CreateTaskForm = ({ closeDialog, showDialog, ...props}: CreateTaskFormProps) => {
+    const { mutate } = useCreateTask();
     const { register, handleSubmit, reset, control } = useForm<any>({
         defaultValues: {
             title: '',
@@ -21,6 +23,7 @@ const CreateTaskForm = ({ closeDialog, showDialog, ...props}: CreateTaskFormProp
 
     const onSubmit = (data: any) => {
         console.log(data);
+        mutate(data);
         closeDialog();
     };
 
@@ -41,9 +44,8 @@ const CreateTaskForm = ({ closeDialog, showDialog, ...props}: CreateTaskFormProp
                 <Controller 
                     name="dueDate"
                     control={control}
-                    defaultValue={new Date()}
                     render={({ field }) =>
-                        <DatePicker {...field} className="w-full rounded-md py-3 px-3 border-2 border-todo-text focus:outline-none" calendarClassName="bg-white" />
+                        <DatePicker {...field} format="y.MMMM dd." defaultValue={new Date()} className="w-full rounded-md py-3 px-3 border-2 border-todo-text focus:outline-none" />
                     } />
             </div>
             <input type="hidden" {...register('completed')} />
