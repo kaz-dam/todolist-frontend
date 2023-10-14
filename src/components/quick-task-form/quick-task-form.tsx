@@ -8,13 +8,16 @@ const QuickTaskForm = () => {
     const { register, handleSubmit, reset } = useForm<QuickTaskFormValues>({
         defaultValues: {
             title: '',
-            dueDate: new Date().toLocaleDateString(),
+            dueDate: new Date(),
             completed: false,
         }
     });
 
     const onSubmit = (data: QuickTaskFormValues) => {
-        mutate(data);
+        mutate({
+            ...data,
+            dueDate: data.dueDate
+        });
         reset();
     };
 

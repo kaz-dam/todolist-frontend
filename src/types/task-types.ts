@@ -1,7 +1,7 @@
 export type Task = {
     id: number;
     title: string;
-    dueDate: string;
+    dueDate: Date;
     completed: boolean;
     order: number;
 }
@@ -15,6 +15,8 @@ export type MarkCompletedResponse = {
 
 export type QuickTaskFormValues = {
     title: string;
-    dueDate: string;
+    dueDate: Date;
     completed: boolean;
 };
+
+export type TaskFormValues = QuickTaskFormValues;

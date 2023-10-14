@@ -5,6 +5,7 @@ import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import "./create-task-form.css";
 import useCreateTask from "../../hooks/use-create-task/use-create-task";
+import { TaskFormValues } from "../../types/task-types";
 
 type CreateTaskFormProps = {
     showDialog: boolean;
@@ -21,9 +22,11 @@ const CreateTaskForm = ({ closeDialog, showDialog, ...props}: CreateTaskFormProp
         }
     });
 
-    const onSubmit = (data: any) => {
-        console.log(data);
-        mutate(data);
+    const onSubmit = (data: TaskFormValues) => {
+        mutate({
+            ...data,
+            dueDate: data.dueDate,
+        });
         closeDialog();
     };
 
@@ -50,7 +53,7 @@ const CreateTaskForm = ({ closeDialog, showDialog, ...props}: CreateTaskFormProp
             </div>
             <input type="hidden" {...register('completed')} />
             <div className="flex flex-row justify-end gap-5">
-                <button onClick={closeDialog} className="w-1/4 rounded-md bg-white text-todo-text border-2 border-todo-text px-4 py-2">Cancel</button>
+                <button onClick={closeDialog} type="button" className="w-1/4 rounded-md bg-white text-todo-text border-2 border-todo-text px-4 py-2">Cancel</button>
                 <button className="w-1/4 rounded-md bg-todo-text border-2 border-todo-text text-white px-4 py-2" type="submit">Add</button>
             </div>
         </form>

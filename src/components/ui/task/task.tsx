@@ -4,7 +4,7 @@ import { cn } from "../../../lib/utils";
 
 type TaskProps = React.HTMLProps<HTMLDivElement> & {
     taskTitle: string;
-    deadLine: string;
+    deadLine: Date;
     completed?: boolean;
     className?: string;
     onMarkCompleted: () => void;
@@ -20,7 +20,7 @@ const Task = ({ taskTitle, deadLine, completed, onMarkCompleted, className, ...p
                 </span>
                 <h2 className="font-semibold text-lg">{taskTitle}</h2>
             </div>
-            <span>{deadLine}</span>
+            <span>{new Date(deadLine).toLocaleDateString()}</span>
         </div>
     );
 };
