@@ -14,18 +14,18 @@ type CreateTaskFormProps = {
 
 const CreateTaskForm = ({ closeDialog, showDialog, ...props}: CreateTaskFormProps) => {
     const { mutate } = useCreateTask();
-    const { register, handleSubmit, reset, control } = useForm<any>({
+    const { register, handleSubmit, reset, control } = useForm<TaskFormValues>({
         defaultValues: {
             title: '',
-            dueDate: '',
+            dueDate: new Date(),
             completed: false,
         }
     });
 
-    const onSubmit = (data: TaskFormValues) => {
+    const onSubmit = (task: TaskFormValues) => {
         mutate({
-            ...data,
-            dueDate: data.dueDate,
+            ...task,
+            dueDate: task.dueDate,
         });
         closeDialog();
     };

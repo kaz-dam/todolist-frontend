@@ -21,7 +21,7 @@ const TaskWrapper = ({ ...props }: TaskWrapperProps) => {
     return (
         <div className="flex flex-col items-center w-full bg-white divide-y divide-dashed" {...props}>
             {tasks && tasks.map((task) => (
-                <Task key={task.id} taskTitle={task.title} deadLine={task.dueDate} completed={task.completed} onMarkCompleted={() => handleMarkCompleted({...task, completed: !task.completed})} />
+                <Task key={task.id} taskTitle={task.title} deadLine={task.dueDate} completed={task.completed} onMarkCompleted={() => handleMarkCompleted({...task, completed: !task.completed})} onUpdateTask={() => console.log('update clicked')} />
             ))}
             <QuickTaskForm />
         </div>
