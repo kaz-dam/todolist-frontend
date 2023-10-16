@@ -6,13 +6,15 @@ import 'react-calendar/dist/Calendar.css';
 import "./create-task-form.css";
 import useCreateTask from "../../hooks/use-create-task/use-create-task";
 import { TaskFormValues } from "../../types/task-types";
+import { useDialog } from "../../contexts/dialog-context";
 
 type CreateTaskFormProps = {
-    showDialog: boolean;
-    closeDialog: () => void;
+    // showDialog: boolean;
+    // closeDialog: () => void;
 };
 
-const CreateTaskForm = ({ closeDialog, showDialog, ...props}: CreateTaskFormProps) => {
+const CreateTaskForm = ({ ...props }: CreateTaskFormProps) => {
+    const { open, closeDialog } = useDialog();
     const { mutate } = useCreateTask();
     const { register, handleSubmit, reset, control } = useForm<TaskFormValues>({
         defaultValues: {
@@ -31,10 +33,10 @@ const CreateTaskForm = ({ closeDialog, showDialog, ...props}: CreateTaskFormProp
     };
 
     useEffect(() => {
-        if (!showDialog) {
+        if (!open) {
             reset();
         }
-    }, [showDialog, reset]);
+    }, [open, reset]);
 
     return (
         <form className="flex flex-col gap-10 w-full" onSubmit={handleSubmit(onSubmit)}>

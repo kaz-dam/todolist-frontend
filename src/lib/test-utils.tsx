@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render as rtlRender, RenderOptions, RenderResult } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { TaskServiceProvider } from "../contexts";
+import { DialogProvider } from "../contexts/dialog-context";
 
 interface ProvidersProps {
   children?: ReactElement;
@@ -14,9 +15,11 @@ const AllTheProviders = ({ children }: ProvidersProps) => {
   return (
     <QueryClientProvider client={queryClient}>
       <TaskServiceProvider>
-        <BrowserRouter>
-          {children}
-        </BrowserRouter>
+        <DialogProvider>
+          <BrowserRouter>
+            {children}
+          </BrowserRouter>
+        </DialogProvider>
       </TaskServiceProvider>
     </QueryClientProvider>
   );

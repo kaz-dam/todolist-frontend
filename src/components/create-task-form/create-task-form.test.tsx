@@ -3,5 +3,5 @@ import { render } from "../../lib/test-utils";
 import CreateTaskForm from "./create-task-form";
 
 test("renders without crashing", () => {
-    render(<CreateTaskForm closeDialog={() => {}} showDialog={true} />);
+    render(<CreateTaskForm />);
 });

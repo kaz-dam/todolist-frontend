@@ -6,6 +6,7 @@ import Layout from "./components/layout/layout";
 import AppRoutes from "./AppRoutes";
 import useSiteTitle from "./hooks/use-site-title/use-site-title";
 import { TaskServiceProvider } from "./contexts";
+import { DialogProvider } from "./contexts/dialog-context";
 
 const queryClient = new QueryClient();
 
@@ -15,9 +16,11 @@ const App = () => {
     return (
         <QueryClientProvider client={queryClient}>
             <TaskServiceProvider>
-                <Layout siteTitle={siteTitle}>
-                    <AppRoutes />
-                </Layout>
+                <DialogProvider>
+                    <Layout siteTitle={siteTitle}>
+                        <AppRoutes />
+                    </Layout>
+                </DialogProvider>
             </TaskServiceProvider>
             <ReactQueryDevtools />
         </QueryClientProvider>

@@ -2,6 +2,8 @@ import React from "react";
 import Header from "../header";
 import Sidebar from "../sidebar";
 import Footer from "../footer";
+import Dialog from "../ui/dialog/dialog";
+import CreateTaskForm from "../create-task-form/create-task-form";
 
 type LayoutProps = {
     siteTitle: string;
@@ -17,6 +19,9 @@ const Layout = ({siteTitle, children, ...props }: LayoutProps) => {
                 <div className="grow">
                     {children}
                 </div>
+                <Dialog>
+                    <CreateTaskForm />
+                </Dialog>
                 <Footer />
             </div>
         </div>
