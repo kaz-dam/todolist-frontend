@@ -14,7 +14,7 @@ type CreateTaskFormProps = {
 };
 
 const CreateTaskForm = ({ ...props }: CreateTaskFormProps) => {
-    const { open, closeDialog } = useDialog();
+    const { open, closeDialog, openedTask } = useDialog();
     const { mutate } = useCreateTask();
     const { register, handleSubmit, reset, control } = useForm<TaskFormValues>({
         defaultValues: {
@@ -38,6 +38,16 @@ const CreateTaskForm = ({ ...props }: CreateTaskFormProps) => {
         }
     }, [open, reset]);
 
+    useEffect(() => {
+        if (openedTask) {
+            reset({
+                title: openedTask.title,
+                dueDate: openedTask.dueDate,
+                completed: openedTask.completed,
+            });
+        }
+    }, [openedTask, reset]);
+
     return (
         <form className="flex flex-col gap-10 w-full" onSubmit={handleSubmit(onSubmit)}>
             <div className="relative">
@@ -50,7 +60,7 @@ const CreateTaskForm = ({ ...props }: CreateTaskFormProps) => {
                     name="dueDate"
                     control={control}
                     render={({ field }) =>
-                        <DatePicker {...field} format="y.MMMM dd." defaultValue={new Date()} className="w-full rounded-md py-3 px-3 border-2 border-todo-text focus:outline-none" />
+                        <DatePicker {...field} format="y.MMMM dd." defaultValue={openedTask?.dueDate || new Date()} className="w-full rounded-md py-3 px-3 border-2 border-todo-text focus:outline-none" />
                     } />
             </div>
             <input type="hidden" {...register('completed')} />

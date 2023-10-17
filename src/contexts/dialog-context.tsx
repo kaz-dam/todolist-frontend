@@ -1,28 +1,39 @@
 import React, { createContext, useState, useContext } from "react";
+import { Task } from "../types/task-types";
 
 type DialogContextType = {
     open: boolean;
     closeDialog: () => void;
     openDialog: () => void;
+    openDialogWithTask: (task: Task) => void;
+    openedTask: Task | undefined;
 };
 
 const DialogContext = createContext<DialogContextType | undefined>(undefined);
 
 export const DialogProvider = ({ children }: React.PropsWithChildren<any>) => {
-    const [ open, setOpen ] = useState(false);
+    const [ open, setOpen ] = useState<boolean>(false);
+    const [ openedTask, setOpenedTask ] = useState<Task | undefined>(undefined);
 
-    const closeDialog = () => {
+    const closeDialog = (): void => {
         setOpen(false);
     };
 
-    const openDialog = () => {
+    const openDialog = (): void => {
         setOpen(true);
+    };
+
+    const openDialogWithTask = (task: Task): void => {
+        setOpen(true);
+        setOpenedTask(task);
     };
 
     const value = {
         open,
         closeDialog,
-        openDialog
+        openDialog,
+        openDialogWithTask,
+        openedTask
     };
 
     return (
