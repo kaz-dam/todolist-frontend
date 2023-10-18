@@ -4,9 +4,10 @@ import DatePicker from "react-date-picker";
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import "./create-task-form.css";
-import useCreateTask from "../../hooks/use-create-task/use-create-task";
+import useCreateTask from "../../hooks/use-create-task";
 import { TaskFormValues } from "../../types/task-types";
 import { useDialog } from "../../contexts/dialog-context";
+import useUpdateTask from "../../hooks/use-update-task";
 
 type CreateTaskFormProps = {
     // showDialog: boolean;
@@ -15,7 +16,8 @@ type CreateTaskFormProps = {
 
 const CreateTaskForm = ({ ...props }: CreateTaskFormProps) => {
     const { open, closeDialog, openedTask } = useDialog();
-    const { mutate } = useCreateTask();
+    const { mutate: createTaskMutation } = useCreateTask();
+    const { mutate: updateTaskMutation } = useUpdateTask();
     const { register, handleSubmit, reset, control } = useForm<TaskFormValues>({
         defaultValues: {
             title: '',
@@ -25,10 +27,18 @@ const CreateTaskForm = ({ ...props }: CreateTaskFormProps) => {
     });
 
     const onSubmit = (task: TaskFormValues) => {
-        mutate({
-            ...task,
-            dueDate: task.dueDate,
-        });
+        if (openedTask) {
+            updateTaskMutation({
+                ...task,
+                id: openedTask.id,
+                dueDate: task.dueDate,
+            });
+        } else {
+            createTaskMutation({
+                ...task,
+                dueDate: task.dueDate,
+            });
+        }
         closeDialog();
     };
 
@@ -66,7 +76,7 @@ const CreateTaskForm = ({ ...props }: CreateTaskFormProps) => {
             <input type="hidden" {...register('completed')} />
             <div className="flex flex-row justify-end gap-5">
                 <button onClick={closeDialog} type="button" className="w-1/4 rounded-md bg-white text-todo-text border-2 border-todo-text px-4 py-2">Cancel</button>
-                <button className="w-1/4 rounded-md bg-todo-text border-2 border-todo-text text-white px-4 py-2" type="submit">Add</button>
+                <button className="w-1/4 rounded-md bg-todo-text border-2 border-todo-text text-white px-4 py-2" type="submit">{openedTask ? 'Update' : 'Add'}</button>
             </div>
         </form>
     );
