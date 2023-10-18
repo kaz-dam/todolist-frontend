@@ -24,6 +24,10 @@ class HttpClient {
         return this.instance.post(url, data, config).then(this.handleResponse);
     }
 
+    patch<T, U>(url: string, data?: U, config?: AxiosRequestConfig): Promise<T> {
+        return this.instance.patch(url, data, config).then(this.handleResponse);
+    }
+
     private handleResponse<T>(response: AxiosResponse<T>): T {
         return response.data;
     }

@@ -20,3 +20,7 @@ export type QuickTaskFormValues = {
 };
 
 export type TaskFormValues = QuickTaskFormValues;
+
+export type UpdateTaskFormValues = QuickTaskFormValues & {
+    id: number;
+};
