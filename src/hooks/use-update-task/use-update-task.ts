@@ -15,7 +15,7 @@ const useUpdateTask = () => {
             const previousTasks = queryClient.getQueryData<Task[]>(['tasks']);
             
             queryClient.setQueryData(['tasks'], (oldData: any) =>
-                oldData.map((task: Task) => task.id === newTask.id ? { ...task, completed: newTask.completed } : task)
+                oldData.map((task: Task) => task.id === newTask.id ? { ...newTask } : task)
             );
 
             return { previousTasks };
