@@ -22,5 +22,12 @@ export const handlers = [
             id: Math.floor(Math.random() * 100),
             title: 'New Task'
         }));
+    }),
+
+    rest.patch("http://localhost:5000/api/tasks/:id", (req, res, ctx) => {
+        return res(ctx.json({
+            id: req.params.id,
+            title: 'Updated Task'
+        }));
     })
 ];
