@@ -4,7 +4,7 @@ class HttpClient {
     private instance: AxiosInstance;
 
     constructor() {
-        const baseURL: string = process.env.NODE_ENV === "development"
+        const baseURL: string = import.meta.env.MODE === "development"
             ? "http://localhost:5000/api"
             : "https://api.github.com";
         

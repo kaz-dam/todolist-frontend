@@ -69,8 +69,8 @@ const CreateTaskForm = ({ ...props }: CreateTaskFormProps) => {
                 <Controller 
                     name="dueDate"
                     control={control}
-                    render={({ field }) =>
-                        <DatePicker {...field} format="y.MMMM dd." defaultValue={openedTask?.dueDate || new Date()} className="w-full rounded-md py-3 px-3 border-2 border-todo-text focus:outline-none" />
+                    render={({ field: { onChange, value, ...field} }) =>
+                        <DatePicker onChange={onChange} value={value} format="y.MMMM dd." defaultValue={openedTask?.dueDate || new Date()} className="w-full rounded-md py-3 px-3 border-2 border-todo-text focus:outline-none" />
                     } />
             </div>
             <input type="hidden" {...register('completed')} />
