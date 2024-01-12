@@ -1,7 +1,7 @@
 import { rest } from "msw";
 
 export const handlers = [
-    rest.get("http://localhost:5000/api/tasks", (req, res, ctx) => {
+    rest.get("http://localhost:4000/tasks", (req, res, ctx) => {
         return res(ctx.json([
             { id: 1, title: "Task 1", dueDate: new Date(), completed: false, order: 1 },
             { id: 2, title: "Task 2", dueDate: new Date(), completed: false, order: 2 },
@@ -10,21 +10,21 @@ export const handlers = [
         ]));
     }),
 
-    rest.post("http://localhost:5000/api/tasks/:id/completed", (req, res, ctx) => {
+    rest.put("http://localhost:4000/tasks/:id", (req, res, ctx) => {
         return res(ctx.json({
             id: req.params.id,
             completed: false
         }));
     }),
     
-    rest.post("http://localhost:5000/api/tasks", (req, res, ctx) => {
+    rest.post("http://localhost:4000/tasks", (req, res, ctx) => {
         return res(ctx.json({
             id: Math.floor(Math.random() * 100),
             title: 'New Task'
         }));
     }),
 
-    rest.patch("http://localhost:5000/api/tasks/:id", (req, res, ctx) => {
+    rest.put("http://localhost:4000/tasks/:id", (req, res, ctx) => {
         return res(ctx.json({
             id: req.params.id,
             title: 'Updated Task'

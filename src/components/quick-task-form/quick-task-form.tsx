@@ -8,7 +8,7 @@ const QuickTaskForm = () => {
     const { register, handleSubmit, reset } = useForm<QuickTaskFormValues>({
         defaultValues: {
             title: '',
-            dueDate: new Date(),
+            due_date: new Date(),
             completed: false,
         }
     });
@@ -16,7 +16,7 @@ const QuickTaskForm = () => {
     const onSubmit = (data: QuickTaskFormValues) => {
         mutate({
             ...data,
-            dueDate: data.dueDate
+            due_date: data.due_date
         });
         reset();
     };
@@ -25,7 +25,7 @@ const QuickTaskForm = () => {
         <>
             <form className="flex flex-row w-full px-[150px] py-4" onSubmit={handleSubmit(onSubmit)}>
                 <input className="rounded-md py-2 px-3 border-2 border-todo-text focus:outline-none" placeholder="Add new" {...register('title', { required: true, minLength: 2 })} />
-                <input type="hidden" {...register('dueDate')} />
+                <input type="hidden" {...register('due_date')} />
                 <input type="hidden" {...register('completed')} />
             </form>
         </>

@@ -8,7 +8,7 @@ const useUpdateTask = () => {
 
     return useMutation({
         mutationFn: taskService.updateTask,
-        mutationKey: ['tasks', 'create'],
+        mutationKey: ['tasks', 'update'],
         onMutate: async (newTask: UpdateTaskFormValues) => {
             await queryClient.cancelQueries({ queryKey: ['tasks'] });
 
@@ -24,7 +24,7 @@ const useUpdateTask = () => {
             queryClient.setQueryData(['tasks'], context?.previousTasks);
         },
         onSettled: () => {
-            // queryClient.invalidateQueries({ queryKey: ['tasks']});
+            queryClient.invalidateQueries({ queryKey: ['tasks']});
         }
     });
 };

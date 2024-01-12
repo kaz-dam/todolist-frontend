@@ -15,11 +15,8 @@ const useCreateTask = () => {
             const previousTasks = queryClient.getQueryData<Task[]>(['tasks']);
             queryClient.setQueryData(['tasks'], (oldData: any) => [
                 ...oldData,
-                {
-                    id: Math.floor(Math.random() * 100),
-                    order: oldData.length + 1,
-                    ...newTask
-                }]);
+                newTask
+            ]);
 
             return { previousTasks };
         },
@@ -27,7 +24,7 @@ const useCreateTask = () => {
             queryClient.setQueryData(['tasks'], context?.previousTasks);
         },
         onSettled: () => {
-            // queryClient.invalidateQueries({ queryKey: ['tasks']});
+            queryClient.invalidateQueries({ queryKey: ['tasks']});
         }
     });
 };

@@ -5,8 +5,8 @@ class HttpClient {
 
     constructor() {
         const baseURL: string = process.env.NODE_ENV === "development"
-            ? "http://localhost:5000/api"
-            : "https://api.github.com";
+            ? "http://localhost:4000"
+            : "https://9ar45g9wd7.execute-api.eu-north-1.amazonaws.com";
         
         this.instance = axios.create({
             baseURL,
@@ -24,8 +24,8 @@ class HttpClient {
         return this.instance.post(url, data, config).then(this.handleResponse);
     }
 
-    patch<T, U>(url: string, data?: U, config?: AxiosRequestConfig): Promise<T> {
-        return this.instance.patch(url, data, config).then(this.handleResponse);
+    put<T, U>(url: string, data?: U, config?: AxiosRequestConfig): Promise<T> {
+        return this.instance.put(url, data, config).then(this.handleResponse);
     }
 
     private handleResponse<T>(response: AxiosResponse<T>): T {

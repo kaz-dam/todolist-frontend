@@ -7,7 +7,7 @@ export default class TaskService {
     }
 
     markCompleted(task: Task): Promise<MarkCompletedResponse> {
-        return HttpClient.post<MarkCompletedResponse, Task>(`/tasks/${task.id}/completed`, task);
+        return HttpClient.put<MarkCompletedResponse, Task>(`/tasks/${task.id}`, task);
     }
 
     createTask(newTask: QuickTaskFormValues): Promise<Task> {
@@ -15,6 +15,6 @@ export default class TaskService {
     }
 
     updateTask(task: UpdateTaskFormValues): Promise<Task> {
-        return HttpClient.patch<Task, UpdateTaskFormValues>(`/tasks/${task.id}`, task);
+        return HttpClient.put<Task, UpdateTaskFormValues>(`/tasks/${task.id}`, task);
     }
 }

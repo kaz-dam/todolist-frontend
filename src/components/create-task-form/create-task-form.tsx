@@ -21,7 +21,7 @@ const CreateTaskForm = ({ ...props }: CreateTaskFormProps) => {
     const { register, handleSubmit, reset, control } = useForm<TaskFormValues>({
         defaultValues: {
             title: '',
-            dueDate: new Date(),
+            due_date: new Date(),
             completed: false,
         }
     });
@@ -31,12 +31,12 @@ const CreateTaskForm = ({ ...props }: CreateTaskFormProps) => {
             updateTaskMutation({
                 ...task,
                 id: openedTask.id,
-                dueDate: task.dueDate,
+                due_date: task.due_date,
             });
         } else {
             createTaskMutation({
                 ...task,
-                dueDate: task.dueDate,
+                due_date: task.due_date,
             });
         }
         closeDialog();
@@ -52,8 +52,8 @@ const CreateTaskForm = ({ ...props }: CreateTaskFormProps) => {
         if (openedTask) {
             reset({
                 title: openedTask.title,
-                dueDate: openedTask.dueDate,
-                completed: openedTask.completed,
+                due_date: openedTask.due_date,
+                completed: openedTask.done,
             });
         }
     }, [openedTask, reset]);
@@ -67,10 +67,10 @@ const CreateTaskForm = ({ ...props }: CreateTaskFormProps) => {
             <div className="relative">
                 <span className="absolute -top-3 left-3 bg-white px-2 z-10">Date</span>
                 <Controller 
-                    name="dueDate"
+                    name="due_date"
                     control={control}
                     render={({ field }) =>
-                        <DatePicker {...field} format="y.MMMM dd." defaultValue={openedTask?.dueDate || new Date()} className="w-full rounded-md py-3 px-3 border-2 border-todo-text focus:outline-none" />
+                        <DatePicker {...field} format="y.MMMM dd." defaultValue={openedTask?.due_date || new Date()} className="w-full rounded-md py-3 px-3 border-2 border-todo-text focus:outline-none" />
                     } />
             </div>
             <input type="hidden" {...register('completed')} />
