@@ -28,7 +28,6 @@ const Task = ({ taskId, taskTitle, deadLine, done, onMarkCompleted, onUpdateTask
 
     const handleDelete = (e: MouseEvent) => {
         e.stopPropagation();
-        console.log('deleted');
         mutate(taskId);
     }
 

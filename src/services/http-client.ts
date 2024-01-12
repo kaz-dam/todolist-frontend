@@ -6,12 +6,13 @@ class HttpClient {
     constructor() {
         const baseURL: string = process.env.NODE_ENV === "development"
             ? "http://localhost:4000"
-            : "https://9ar45g9wd7.execute-api.eu-north-1.amazonaws.com";
+            : process.env.REACT_APP_TODO_API_URL || "";
         
         this.instance = axios.create({
             baseURL,
             headers: {
                 "Content-Type": "application/json",
+                "X-Api-Key": process.env.REACT_APP_TODO_API_KEY || "",
             },
         });
     }
