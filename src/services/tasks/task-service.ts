@@ -17,4 +17,8 @@ export default class TaskService {
     updateTask(task: UpdateTaskFormValues): Promise<Task> {
         return HttpClient.put<Task, UpdateTaskFormValues>(`/tasks/${task.id}`, task);
     }
+
+    deleteTask(taskId: string): Promise<Task> {
+        return HttpClient.delete<Task>(`/tasks/${taskId}`);
+    }
 }

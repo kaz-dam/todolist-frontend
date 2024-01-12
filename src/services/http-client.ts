@@ -28,6 +28,10 @@ class HttpClient {
         return this.instance.put(url, data, config).then(this.handleResponse);
     }
 
+    delete<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
+        return this.instance.delete(url, config).then(this.handleResponse);
+    }
+
     private handleResponse<T>(response: AxiosResponse<T>): T {
         return response.data;
     }
